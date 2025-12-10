@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEDx[GoldCoast] - Resilience in Paradise</title>
+    
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons (CDN) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* React 코드에 있던 애니메이션 스타일 이식 */
+        @keyframes fade-in-up {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-up {
+            animation: fade-in-up 0.8s ease-out forwards;
+        }
+        @keyframes slow-zoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+        .animate-slow-zoom {
+            animation: slow-zoom 20s linear infinite alternate;
+        }
+        /* 스크롤바 숨기기 (모달 오픈 시) */
+        .overflow-hidden-body {
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="font-sans text-white bg-black min-h-screen selection:bg-red-600 selection:text-white">
+
+    <!-- 1. GNB (Sticky Header) -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 bg-transparent py-6">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <!-- Left: Logo -->
+            <a href="#" class="flex items-center gap-1 group">
+                <span class="text-2xl font-bold text-red-600">TEDx</span>
+                <span class="text-2xl font-light tracking-tighter group-hover:text-red-500 transition-colors">GoldCoast</span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#about" class="text-sm font-medium hover:text-red-500 transition-colors uppercase tracking-widest">About</a>
+                <a href="#speakers" class="text-sm font-medium hover:text-red-500 transition-colors uppercase tracking-widest">Speakers</a>
+                <a href="#venue" class="text-sm font-medium hover:text-red-500 transition-colors uppercase tracking-widest">Venue</a>
+                <a href="#partners" class="text-sm font-medium hover:text-red-500 transition-colors uppercase tracking-widest">Partners</a>
+                <button class="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-full text-sm font-bold transition-transform transform hover:scale-105">
+                    Get Tickets
+                </button>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-btn" class="md:hidden text-white">
+                <i data-lucide="menu" class="w-7 h-7"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-black border-t border-gray-800 py-4 flex flex-col items-center gap-4">
+            <a href="#about" class="text-lg font-medium hover:text-red-500 mobile-link">About</a>
+            <a href="#speakers" class="text-lg font-medium hover:text-red-500 mobile-link">Speakers</a>
+            <a href="#venue" class="text-lg font-medium hover:text-red-500 mobile-link">Venue</a>
+            <a href="#partners" class="text-lg font-medium hover:text-red-500 mobile-link">Partners</a>
+            <button class="bg-red-600 text-white px-8 py-3 rounded-full mt-2">Get Tickets</button>
+        </div>
+    </nav>
+
+    <!-- 2. Hero Section -->
+    <section id="hero" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background Video Simulation -->
+        <div class="absolute inset-0 z-0">
+            <div class="w-full h-full bg-[url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2073&auto=format&fit=crop')] bg-cover bg-center animate-slow-zoom"></div>
+            <!-- Overlay -->
+            <div class="absolute inset-0 bg-black/40 bg-gradient-to-b from-black/60 via-transparent to-black"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto mt-16">
+            <div class="animate-fade-in-up">
+                <h2 class="text-xl md:text-2xl text-red-500 font-bold tracking-[0.2em] mb-4 uppercase">
+                    x = independently organized TED event
+                </h2>
+                <h1 class="text-5xl md:text-8xl font-black tracking-tighter mb-6 leading-tight">
+                    RESILIENCE <br />
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">IN PARADISE</span>
+                </h1>
+                <p class="text-gray-200 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light">
+                    From the mat to the boardroom. <br class="md:hidden"/>
+                    Discover the true meaning of strength in Gold Coast.
+                </p>
+                <div class="flex flex-col md:flex-row gap-4 justify-center items-center">
+                    <button class="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-full text-lg font-bold w-full md:w-auto transition-all">
+                        Get Tickets
+                    </button>
+                    <button class="border border-white hover:bg-white hover:text-black text-white px-8 py-4 rounded-full text-lg font-bold w-full md:w-auto transition-all flex items-center justify-center gap-2">
+                        <i data-lucide="play" class="w-4 h-4 fill-current"></i> Watch Teaser
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Down Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <div class="w-[1px] h-16 bg-gradient-to-b from-transparent via-white to-transparent"></div>
+        </div>
+    </section>
+
+    <!-- 3. Intro Section -->
+    <section id="about" class="py-24 bg-black">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row gap-12 items-center">
+                <div class="md:w-1/2">
+                    <h3 class="text-red-600 font-bold tracking-widest uppercase mb-4">The Theme</h3>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-8 leading-tight">
+                        Paradise isn't just about relaxation.<br/>It's about recovery.
+                    </h2>
+                </div>
+                <div class="md:w-1/2 text-gray-400 text-lg leading-relaxed space-y-6">
+                    <p>
+                        골드코스트는 세계적인 휴양지입니다. 하지만 우리는 이곳의 '아름다움'이 아닌, 
+                        그 이면에 존재하는 치열한 삶과 회복(Recovery)의 과정에 주목합니다.
+                    </p>
+                    <p>
+                        <strong class="text-white">Resilience in Paradise</strong>는 단순한 힐링이 아닙니다. 
+                        부서진 마음을 다잡는 명상, 한계를 시험하는 주짓수, 
+                        실패를 딛고 일어선 스타트업의 이야기를 통해 진정한 '회복탄력성'을 탐구합니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Pillars Section -->
+    <section id="pillars" class="py-24 bg-zinc-900">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold">The 3 Pillars of Resilience</h2>
+                <div class="w-20 h-1 bg-red-600 mx-auto mt-4"></div>
+            </div>
+
+            <!-- Pillars Grid (Populated by Static HTML but interactivity handled by JS) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="pillars-container">
+                <!-- Pillar 1 -->
+                <div class="pillar-card group relative h-96 overflow-hidden rounded-xl cursor-pointer shadow-2xl" data-id="1">
+                    <div class="absolute inset-0 bg-blue-900 transition-transform duration-700 group-hover:scale-110 opacity-80"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
+                    <div class="absolute bottom-0 left-0 p-8 w-full">
+                        <div class="text-4xl mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">🧠</div>
+                        <h3 class="text-2xl font-bold mb-2 group-hover:text-red-500 transition-colors">Mental Resilience</h3>
+                        <p class="text-gray-300 text-sm line-clamp-2 mb-4 group-hover:opacity-100 transition-opacity">휴양지에서의 힐링이 아닌, 치열한 정신적 회복력을 탐구합니다. 명상과 뇌과학을 통해 스트레스를 에너지로 전환하는 방법을 공유합니다.</p>
+                        <div class="flex items-center text-red-500 font-bold text-sm opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                            READ MORE <i data-lucide="chevron-right" class="w-4 h-4 ml-1"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pillar 2 -->
+                <div class="pillar-card group relative h-96 overflow-hidden rounded-xl cursor-pointer shadow-2xl" data-id="2">
+                    <div class="absolute inset-0 bg-red-900 transition-transform duration-700 group-hover:scale-110 opacity-80"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
+                    <div class="absolute bottom-0 left-0 p-8 w-full">
+                        <div class="text-4xl mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">🥋</div>
+                        <h3 class="text-2xl font-bold mb-2 group-hover:text-red-500 transition-colors">Physical Endurance</h3>
+                        <p class="text-gray-300 text-sm line-clamp-2 mb-4 group-hover:opacity-100 transition-opacity">주짓수와 서핑의 도시 골드코스트. 한계를 뛰어넘는 신체적 수련이 어떻게 삶의 태도를 변화시키는지 이야기합니다.</p>
+                        <div class="flex items-center text-red-500 font-bold text-sm opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                            READ MORE <i data-lucide="chevron-right" class="w-4 h-4 ml-1"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pillar 3 -->
+                <div class="pillar-card group relative h-96 overflow-hidden rounded-xl cursor-pointer shadow-2xl" data-id="3">
+                    <div class="absolute inset-0 bg-yellow-700 transition-transform duration-700 group-hover:scale-110 opacity-80"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
+                    <div class="absolute bottom-0 left-0 p-8 w-full">
+                        <div class="text-4xl mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">💼</div>
+                        <h3 class="text-2xl font-bold mb-2 group-hover:text-red-500 transition-colors">Business Survival</h3>
+                        <p class="text-gray-300 text-sm line-clamp-2 mb-4 group-hover:opacity-100 transition-opacity">스타트업과 비즈니스 정글에서의 생존기. 실패를 딛고 일어서는 창업가들의 회복탄력성(Resilience) 스토리.</p>
+                        <div class="flex items-center text-red-500 font-bold text-sm opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                            READ MORE <i data-lucide="chevron-right" class="w-4 h-4 ml-1"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Overlay (Hidden by default) -->
+    <div id="modal-overlay" class="hidden fixed inset-0 z-[60] flex items-center justify-center px-4">
+        <div id="modal-backdrop" class="absolute inset-0 bg-black/90 backdrop-blur-sm"></div>
+        <div class="relative bg-zinc-900 w-full max-w-2xl rounded-2xl overflow-hidden shadow-2xl animate-fade-in-up border border-gray-800">
+            <!-- Modal Content (Populated by JS) -->
+            <div id="modal-header-image" class="h-40 flex items-center justify-center">
+               <span id="modal-icon" class="text-6xl"></span>
+            </div>
+            
+            <button id="modal-close-btn" class="absolute top-4 right-4 bg-black/50 hover:bg-red-600 text-white p-2 rounded-full transition-colors">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <div class="p-8">
+                <h4 id="modal-subtitle" class="text-red-500 font-bold tracking-widest text-sm mb-2"></h4>
+                <h3 id="modal-title" class="text-3xl font-bold mb-6"></h3>
+                <p id="modal-details" class="text-gray-300 leading-relaxed mb-6"></p>
+                <div class="bg-black p-4 rounded-lg border border-gray-800">
+                    <p class="text-sm text-gray-400">
+                        <strong class="text-white block mb-1">Key Takeaway:</strong>
+                        이 세션에서는 <span id="modal-takeaway-topic"></span>의 원리를 배우고 실생활에 즉시 적용할 수 있는 멘탈/피지컬 트레이닝 기법을 소개합니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. Speakers Section -->
+    <section id="speakers" class="py-24 bg-black">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h3 class="text-red-600 font-bold tracking-widest uppercase mb-2">Community</h3>
+                    <h2 class="text-4xl font-bold">The Speakers</h2>
+                </div>
+                <div class="hidden md:flex gap-2">
+                    <button class="p-3 border border-gray-700 rounded-full hover:bg-gray-800 transition"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
+                    <button class="p-3 border border-gray-700 rounded-full hover:bg-gray-800 transition"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+                <!-- Speaker 1 -->
+                <div class="group cursor-pointer">
+                    <div class="aspect-[3/4] bg-gray-700 rounded-lg mb-4 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-transparent group-hover:bg-red-600/20 transition-colors duration-300"></div>
+                    </div>
+                    <h3 class="text-xl font-bold group-hover:text-red-500 transition-colors">Sarah Jenkins</h3>
+                    <p class="text-sm text-gray-500 uppercase tracking-wider mb-1">Neuroscientist</p>
+                    <p class="text-gray-400 text-sm italic">"Rewiring Anxiety"</p>
+                </div>
+                <!-- Speaker 2 -->
+                <div class="group cursor-pointer">
+                    <div class="aspect-[3/4] bg-gray-600 rounded-lg mb-4 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-transparent group-hover:bg-red-600/20 transition-colors duration-300"></div>
+                    </div>
+                    <h3 class="text-xl font-bold group-hover:text-red-500 transition-colors">Marcus 'Blade' Lima</h3>
+                    <p class="text-sm text-gray-500 uppercase tracking-wider mb-1">BJJ Black Belt</p>
+                    <p class="text-gray-400 text-sm italic">"Pressure is a Privilege"</p>
+                </div>
+                <!-- Speaker 3 -->
+                <div class="group cursor-pointer">
+                    <div class="aspect-[3/4] bg-gray-800 rounded-lg mb-4 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-transparent group-hover:bg-red-600/20 transition-colors duration-300"></div>
+                    </div>
+                    <h3 class="text-xl font-bold group-hover:text-red-500 transition-colors">David Choi</h3>
+                    <p class="text-sm text-gray-500 uppercase tracking-wider mb-1">Tech Founder</p>
+                    <p class="text-gray-400 text-sm italic">"The Art of Pivoting"</p>
+                </div>
+                <!-- Speaker 4 (Placeholder) -->
+                <div class="group cursor-pointer">
+                    <div class="aspect-[3/4] bg-gray-900 rounded-lg mb-4 overflow-hidden relative">
+                        <div class="absolute inset-0 flex items-center justify-center flex-col opacity-50">
+                             <div class="w-20 h-20 rounded-full bg-black/30 mb-2"></div>
+                             <span class="text-sm font-bold uppercase tracking-widest">Coming Soon</span>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold group-hover:text-red-500 transition-colors">Coming Soon</h3>
+                    <p class="text-sm text-gray-500 uppercase tracking-wider mb-1">Speaker TBD</p>
+                    <p class="text-gray-400 text-sm italic">"Stay Tuned"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Venue Section -->
+    <section id="venue" class="py-24 bg-zinc-900 relative">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row gap-12">
+            <div class="md:w-1/3">
+                <h3 class="text-red-600 font-bold tracking-widest uppercase mb-2">The Venue</h3>
+                <h2 class="text-4xl font-bold mb-6">HOTA,<br/>Home of the Arts</h2>
+                
+                <div class="space-y-6 text-gray-300">
+                    <div class="flex items-start gap-4">
+                        <i data-lucide="map-pin" class="text-red-600 mt-1 shrink-0 w-5 h-5"></i>
+                        <p>135 Bundall Rd,<br/>Surfers Paradise QLD 4217<br/>Australia</p>
+                    </div>
+                    <p class="text-sm text-gray-400">
+                        골드코스트의 문화 중심지 HOTA에서 진행됩니다. 
+                        강연 후 야외 호수 공원에서 네트워킹 파티가 이어집니다.
+                    </p>
+                    <button class="border border-white hover:bg-white hover:text-black px-6 py-3 rounded-full text-sm font-bold transition-colors w-full md:w-auto">
+                        Google Maps 길찾기
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Map Placeholder -->
+            <div class="md:w-2/3 h-[400px] bg-gray-800 rounded-xl overflow-hidden relative grayscale hover:grayscale-0 transition-all duration-500">
+                <div class="absolute inset-0 flex items-center justify-center bg-gray-800 text-gray-500">
+                    <div class="text-center">
+                        <i data-lucide="map-pin" class="mx-auto mb-2 opacity-50 w-12 h-12"></i>
+                        <p>Map API Integration Required</p>
+                    </div>
+                </div>
+                <div class="absolute top-1/2 left-1/2 w-4 h-4 bg-red-600 rounded-full animate-ping"></div>
+                <div class="absolute top-1/2 left-1/2 w-4 h-4 bg-red-600 rounded-full border-2 border-white transform -translate-x-1/2 -translate-y-1/2"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Footer -->
+    <footer class="bg-black pt-20 pb-10 border-t border-gray-900">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
+                
+                <!-- Newsletter -->
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-bold mb-2">Join the Community</h3>
+                    <p class="text-gray-400 mb-6">티켓 오픈 알림과 연사 정보를 가장 먼저 받아보세요.</p>
+                    <div class="flex gap-2">
+                        <input 
+                            type="email" 
+                            placeholder="Email Address" 
+                            class="bg-gray-900 border border-gray-800 text-white px-4 py-3 rounded-lg w-full focus:outline-none focus:border-red-600 transition-colors"
+                        />
+                        <button class="bg-red-600 hover:bg-red-700 px-6 py-3 rounded-lg font-bold transition-colors shrink-0">
+                            Subscribe
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Social & Contact -->
+                <div class="md:w-auto">
+                    <h4 class="font-bold mb-4 uppercase text-sm tracking-widest text-gray-500">Follow Us</h4>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center hover:bg-red-600 transition-colors"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center hover:bg-blue-600 transition-colors"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center hover:bg-white hover:text-black transition-colors"><i data-lucide="mail" class="w-5 h-5"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-gray-900 text-xs text-gray-600">
+                <p>&copy; 2024 TEDxGoldCoast. This independent TEDx event is operated under license from TED.</p>
+                <div class="flex gap-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white">Privacy Policy</a>
+                    <a href="#" class="hover:text-white">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Implementation -->
+    <script>
+        // 1. Initialize Icons
+        lucide.createIcons();
+
+        // 2. Pillars Data (For Modal)
+        const pillarsData = [
+            {
+                id: 1,
+                title: "Mental Resilience",
+                subtitle: "The Mindset",
+                icon: "🧠",
+                details: "현대인의 번아웃은 '쉼'이 부족해서가 아니라 '회복의 기술'을 모르기 때문입니다. 정신적 탄력성을 기르는 구체적인 방법론과 실제 사례를 다룹니다.",
+                imageClass: "bg-blue-900"
+            },
+            {
+                id: 2,
+                title: "Physical Endurance",
+                subtitle: "The Body",
+                icon: "🥋",
+                details: "파도에 맞서고 매트 위에서 구르며 배우는 겸손과 인내. 육체의 고통을 통해 정신을 단련하는 마스터들의 철학을 공유합니다.",
+                imageClass: "bg-red-900"
+            },
+            {
+                id: 3,
+                title: "Business Survival",
+                subtitle: "The Grind",
+                icon: "💼",
+                details: "화려한 성공 신화 뒤에 숨겨진 수많은 실패와 거절들. 그럼에도 불구하고 다시 일어설 수 있었던 구체적인 전략과 마인드셋을 공개합니다.",
+                imageClass: "bg-yellow-700"
+            }
+        ];
+
+        // 3. Scroll Logic (Sticky Header)
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-black/90', 'backdrop-blur-md', 'py-4', 'shadow-lg');
+                navbar.classList.remove('bg-transparent', 'py-6');
+            } else {
+                navbar.classList.remove('bg-black/90', 'backdrop-blur-md', 'py-4', 'shadow-lg');
+                navbar.classList.add('bg-transparent', 'py-6');
+            }
+        });
+
+        // 4. Mobile Menu Logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            const isClosed = mobileMenu.classList.contains('hidden');
+            if(isClosed) {
+                mobileMenu.classList.remove('hidden');
+                // Change icon to X
+                mobileMenuBtn.innerHTML = '<i data-lucide="x" class="w-7 h-7"></i>';
+            } else {
+                mobileMenu.classList.add('hidden');
+                // Change icon to Menu
+                mobileMenuBtn.innerHTML = '<i data-lucide="menu" class="w-7 h-7"></i>';
+            }
+            lucide.createIcons();
+        });
+
+        // Close menu when a link is clicked
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenuBtn.innerHTML = '<i data-lucide="menu" class="w-7 h-7"></i>';
+                lucide.createIcons();
+            });
+        });
+
+        // 5. Modal Logic
+        const modalOverlay = document.getElementById('modal-overlay');
+        const modalBackdrop = document.getElementById('modal-backdrop');
+        const modalCloseBtn = document.getElementById('modal-close-btn');
+        const pillars = document.querySelectorAll('.pillar-card');
+
+        // Modal Content Elements
+        const modalHeaderImage = document.getElementById('modal-header-image');
+        const modalIcon = document.getElementById('modal-icon');
+        const modalSubtitle = document.getElementById('modal-subtitle');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDetails = document.getElementById('modal-details');
+        const modalTakeawayTopic = document.getElementById('modal-takeaway-topic');
+
+        function openModal(data) {
+            // Set Content
+            modalHeaderImage.className = `h-40 flex items-center justify-center ${data.imageClass}`;
+            modalIcon.textContent = data.icon;
+            modalSubtitle.textContent = data.subtitle;
+            modalTitle.textContent = data.title;
+            modalDetails.textContent = data.details;
+            modalTakeawayTopic.textContent = data.title.toLowerCase();
+
+            // Show Modal
+            modalOverlay.classList.remove('hidden');
+            document.body.classList.add('overflow-hidden-body');
+        }
+
+        function closeModal() {
+            modalOverlay.classList.add('hidden');
+            document.body.classList.remove('overflow-hidden-body');
+        }
+
+        // Add Click Listeners to Pillars
+        pillars.forEach(pillar => {
+            pillar.addEventListener('click', () => {
+                const id = parseInt(pillar.getAttribute('data-id'));
+                const data = pillarsData.find(p => p.id === id);
+                if (data) openModal(data);
+            });
+        });
+
+        // Close Events
+        modalBackdrop.addEventListener('click', closeModal);
+        modalCloseBtn.addEventListener('click', closeModal);
+
+    </script>
+</body>
+</html>
