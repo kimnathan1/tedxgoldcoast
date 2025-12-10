@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +12,7 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
-        /* React 코드에 있던 애니메이션 스타일 이식 */
+        /* React animations ported to CSS */
         @keyframes fade-in-up {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -27,7 +27,7 @@
         .animate-slow-zoom {
             animation: slow-zoom 20s linear infinite alternate;
         }
-        /* 스크롤바 숨기기 (모달 오픈 시) */
+        /* Hide scrollbar when modal is open */
         .overflow-hidden-body {
             overflow: hidden;
         }
@@ -122,13 +122,10 @@
                 </div>
                 <div class="md:w-1/2 text-gray-400 text-lg leading-relaxed space-y-6">
                     <p>
-                        골드코스트는 세계적인 휴양지입니다. 하지만 우리는 이곳의 '아름다움'이 아닌, 
-                        그 이면에 존재하는 치열한 삶과 회복(Recovery)의 과정에 주목합니다.
+                        Gold Coast is a world-renowned resort destination. But we look beyond the beauty of this place to the intense life and the process of <strong>Recovery</strong> that exists behind it.
                     </p>
                     <p>
-                        <strong class="text-white">Resilience in Paradise</strong>는 단순한 힐링이 아닙니다. 
-                        부서진 마음을 다잡는 명상, 한계를 시험하는 주짓수, 
-                        실패를 딛고 일어선 스타트업의 이야기를 통해 진정한 '회복탄력성'을 탐구합니다.
+                        <strong class="text-white">Resilience in Paradise</strong> is not just about healing. We explore true 'resilience' through meditation to mend broken hearts, Jiu-Jitsu to test limits, and startup stories of rising from failure.
                     </p>
                 </div>
             </div>
@@ -152,7 +149,7 @@
                     <div class="absolute bottom-0 left-0 p-8 w-full">
                         <div class="text-4xl mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">🧠</div>
                         <h3 class="text-2xl font-bold mb-2 group-hover:text-red-500 transition-colors">Mental Resilience</h3>
-                        <p class="text-gray-300 text-sm line-clamp-2 mb-4 group-hover:opacity-100 transition-opacity">휴양지에서의 힐링이 아닌, 치열한 정신적 회복력을 탐구합니다. 명상과 뇌과학을 통해 스트레스를 에너지로 전환하는 방법을 공유합니다.</p>
+                        <p class="text-gray-300 text-sm line-clamp-2 mb-4 group-hover:opacity-100 transition-opacity">We explore fierce mental resilience, not just vacation healing. Sharing methods to transform stress into energy through meditation and neuroscience.</p>
                         <div class="flex items-center text-red-500 font-bold text-sm opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
                             READ MORE <i data-lucide="chevron-right" class="w-4 h-4 ml-1"></i>
                         </div>
@@ -166,7 +163,7 @@
                     <div class="absolute bottom-0 left-0 p-8 w-full">
                         <div class="text-4xl mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">🥋</div>
                         <h3 class="text-2xl font-bold mb-2 group-hover:text-red-500 transition-colors">Physical Endurance</h3>
-                        <p class="text-gray-300 text-sm line-clamp-2 mb-4 group-hover:opacity-100 transition-opacity">주짓수와 서핑의 도시 골드코스트. 한계를 뛰어넘는 신체적 수련이 어떻게 삶의 태도를 변화시키는지 이야기합니다.</p>
+                        <p class="text-gray-300 text-sm line-clamp-2 mb-4 group-hover:opacity-100 transition-opacity">Gold Coast: the city of Jiu-Jitsu and Surfing. We talk about how exceeding physical limits transforms one's attitude toward life.</p>
                         <div class="flex items-center text-red-500 font-bold text-sm opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
                             READ MORE <i data-lucide="chevron-right" class="w-4 h-4 ml-1"></i>
                         </div>
@@ -180,7 +177,7 @@
                     <div class="absolute bottom-0 left-0 p-8 w-full">
                         <div class="text-4xl mb-4 transform group-hover:-translate-y-2 transition-transform duration-300">💼</div>
                         <h3 class="text-2xl font-bold mb-2 group-hover:text-red-500 transition-colors">Business Survival</h3>
-                        <p class="text-gray-300 text-sm line-clamp-2 mb-4 group-hover:opacity-100 transition-opacity">스타트업과 비즈니스 정글에서의 생존기. 실패를 딛고 일어서는 창업가들의 회복탄력성(Resilience) 스토리.</p>
+                        <p class="text-gray-300 text-sm line-clamp-2 mb-4 group-hover:opacity-100 transition-opacity">Survival in the startup and business jungle. Stories of resilience from founders who rose again after failure.</p>
                         <div class="flex items-center text-red-500 font-bold text-sm opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
                             READ MORE <i data-lucide="chevron-right" class="w-4 h-4 ml-1"></i>
                         </div>
@@ -210,7 +207,7 @@
                 <div class="bg-black p-4 rounded-lg border border-gray-800">
                     <p class="text-sm text-gray-400">
                         <strong class="text-white block mb-1">Key Takeaway:</strong>
-                        이 세션에서는 <span id="modal-takeaway-topic"></span>의 원리를 배우고 실생활에 즉시 적용할 수 있는 멘탈/피지컬 트레이닝 기법을 소개합니다.
+                        In this session, you will learn the principles of <span id="modal-takeaway-topic"></span> and discover mental/physical training techniques you can apply to real life immediately.
                     </p>
                 </div>
             </div>
@@ -280,19 +277,18 @@
         <div class="container mx-auto px-6 flex flex-col md:flex-row gap-12">
             <div class="md:w-1/3">
                 <h3 class="text-red-600 font-bold tracking-widest uppercase mb-2">The Venue</h3>
-                <h2 class="text-4xl font-bold mb-6">HOTA,<br/>Home of the Arts</h2>
+                <h2 class="text-4xl font-bold mb-6">Griffith Lecture Hall</h2>
                 
                 <div class="space-y-6 text-gray-300">
                     <div class="flex items-start gap-4">
                         <i data-lucide="map-pin" class="text-red-600 mt-1 shrink-0 w-5 h-5"></i>
-                        <p>135 Bundall Rd,<br/>Surfers Paradise QLD 4217<br/>Australia</p>
+                        <p>Griffith University, Gold Coast Campus<br/>Parklands Dr, Southport QLD 4215<br/>Australia</p>
                     </div>
                     <p class="text-sm text-gray-400">
-                        골드코스트의 문화 중심지 HOTA에서 진행됩니다. 
-                        강연 후 야외 호수 공원에서 네트워킹 파티가 이어집니다.
+                        Join us at the academic hub of the Gold Coast. A networking party will follow at the campus green after the talks.
                     </p>
                     <button class="border border-white hover:bg-white hover:text-black px-6 py-3 rounded-full text-sm font-bold transition-colors w-full md:w-auto">
-                        Google Maps 길찾기
+                        Get Directions
                     </button>
                 </div>
             </div>
@@ -319,7 +315,7 @@
                 <!-- Newsletter -->
                 <div class="md:w-1/2">
                     <h3 class="text-2xl font-bold mb-2">Join the Community</h3>
-                    <p class="text-gray-400 mb-6">티켓 오픈 알림과 연사 정보를 가장 먼저 받아보세요.</p>
+                    <p class="text-gray-400 mb-6">Be the first to get ticket notifications and speaker updates.</p>
                     <div class="flex gap-2">
                         <input 
                             type="email" 
@@ -358,14 +354,14 @@
         // 1. Initialize Icons
         lucide.createIcons();
 
-        // 2. Pillars Data (For Modal)
+        // 2. Pillars Data (For Modal) - Translated to English
         const pillarsData = [
             {
                 id: 1,
                 title: "Mental Resilience",
                 subtitle: "The Mindset",
                 icon: "🧠",
-                details: "현대인의 번아웃은 '쉼'이 부족해서가 아니라 '회복의 기술'을 모르기 때문입니다. 정신적 탄력성을 기르는 구체적인 방법론과 실제 사례를 다룹니다.",
+                details: "Modern burnout isn't caused by a lack of rest, but by a lack of recovery skills. We cover concrete methodologies to build mental resilience and real-life case studies.",
                 imageClass: "bg-blue-900"
             },
             {
@@ -373,7 +369,7 @@
                 title: "Physical Endurance",
                 subtitle: "The Body",
                 icon: "🥋",
-                details: "파도에 맞서고 매트 위에서 구르며 배우는 겸손과 인내. 육체의 고통을 통해 정신을 단련하는 마스터들의 철학을 공유합니다.",
+                details: "Facing the waves and rolling on the mat teaches humility and patience. We share the philosophy of masters who train their minds through physical hardship.",
                 imageClass: "bg-red-900"
             },
             {
@@ -381,7 +377,7 @@
                 title: "Business Survival",
                 subtitle: "The Grind",
                 icon: "💼",
-                details: "화려한 성공 신화 뒤에 숨겨진 수많은 실패와 거절들. 그럼에도 불구하고 다시 일어설 수 있었던 구체적인 전략과 마인드셋을 공개합니다.",
+                details: "Behind the glamorous success stories lie countless failures and rejections. We reveal the specific strategies and mindsets that allowed founders to rise again despite the odds.",
                 imageClass: "bg-yellow-700"
             }
         ];
